@@ -1,4 +1,4 @@
-name: Github Auto-Checkin bot
+name: Github Auto Sign In bot
 
 on:
   push:
@@ -6,6 +6,14 @@ on:
       - master
   schedule:
     - cron: '30 23 * * *'
+env:
+  MO_FISH_USERNAME: ${{ secrets.MO_FISH_USERNAME }}
+  MO_FISH_PASSWORD: ${{ secrets.MO_FISH_PASSWORD }}
+  JUE_JIN_COOKIE: ${{ secrets.JUE_JIN_COOKIE }}
+  SERVER_J: ${{ secrets.SERVER_J }}
+  UPLOAD_BESULT_DIR: true
+  JD_COOKIE: ${{ secrets.JD_COOKIE }}
+  JD_DUAL_COOKIE: ${{ secrets.JD_DUAL_COOKIE }}
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -22,14 +30,6 @@ jobs:
       - name: Run Script
         run: node jd_sign.js  
       - run: node index.js
-        env:
-          MO_FISH_USERNAME: ${{ secrets.MO_FISH_USERNAME }}
-          MO_FISH_PASSWORD: ${{ secrets.MO_FISH_PASSWORD }}
-          JUE_JIN_COOKIE: ${{ secrets.JUE_JIN_COOKIE }}
-          SERVER_J: ${{ secrets.SERVER_J }}
-          UPLOAD_BESULT_DIR: true
-          JD_COOKIE: ${{ secrets.JD_COOKIE }}
-          JD_DUAL_COOKIE: ${{ secrets.JD_DUAL_COOKIE }}
       - name: Upload result file
         uses: actions/upload-artifact@master
         if: env.UPLOAD_BESULT_DIR == 'true'
