@@ -3,7 +3,7 @@ name: Github Auto-Checkin bot
 on:
   push:
     branches:
-      - v1
+      - master
   schedule:
     - cron: '30 23 * * *'
 jobs:
