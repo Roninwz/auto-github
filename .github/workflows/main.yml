@@ -1,0 +1,27 @@
+name: Github Auto-Checkin bot
+
+on:
+  push:
+    branches:
+      - v1
+  schedule:
+    - cron: '30 23 * * *'
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout codes
+        uses: actions/checkout@v1
+      - name: Use Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
+      - name: Run app
+        run: npm install
+      - run: node index.js
+        env:
+          MO_FISH_USERNAME: ${{ secrets.MO_FISH_USERNAME }}
+          MO_FISH_PASSWORD: ${{ secrets.MO_FISH_PASSWORD }}
+          JUE_JIN_COOKIE: ${{ secrets.JUE_JIN_COOKIE }}
+          SERVER_J: ${{ secrets.SERVER_J }}
