@@ -31,8 +31,8 @@ jobs:
           JD_COOKIE: ${{ secrets.JD_COOKIE }}
           JD_DUAL_COOKIE: ${{ secrets.JD_DUAL_COOKIE }}
       - name: Upload result file
-              uses: actions/upload-artifact@master
-              if: env.UPLOAD_BESULT_DIR == 'true'
-              with:
-                name: result
-                path: ./*.txt
+          uses: actions/upload-artifact@master
+          if: env.UPLOAD_BESULT_DIR == 'true'
+          with:
+            name: result
+            path: ./*.txt
